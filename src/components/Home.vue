@@ -3,7 +3,7 @@
     div.p-col-12.p-mb-2
       p-button.p-d-block.p-mx-auto(:label="'People'" @click="showPeopleList()")
     div.p-col-12.p-mb-2
-      p-button.p-d-block.p-mx-auto(:label="'Planets'")
+      p-button.p-d-block.p-mx-auto(:label="'Planets'" @click="showPlanetsList()")
     div.p-col-12.p-mb-2
       p-button.p-d-block.p-mx-auto(:label="'Starships'")
 </template>
@@ -24,6 +24,9 @@ export default {
   methods: {
     showPeopleList () {
       this.$router.push('/people')
+    },
+    showPlanetsList () {
+      this.$router.push('/planets')
     }
   }
 }
