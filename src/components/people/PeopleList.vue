@@ -17,6 +17,11 @@
                   v-model="filters['global']"
                   placeholder="Global Search")
           template(#empty) No People found.
+          p-column(header="Info"
+            headerStyle="width: 8rem; text-align: center"
+            bodyStyle="text-align: center; overflow: visible")
+            template(#body="slotProps")
+              p-button(type="button" icon="pi pi-eye" class="p-button-secondary" @click="clickPeopleRow(slotProps.data)")
           p-column(field="name", header="Name")
             template(#body="slotProps")
               span {{ slotProps.data.name }}
@@ -44,6 +49,10 @@
       p-progress
     p-button(:label="'Go Back'" @click="goBack()")
     p-toast
+    people-detail(
+      v-if="showPeopleDetail"
+      :peopleData="peopleDetailData"
+      @closePeopleDetail="closedPeopleDetail")
 </template>
 
 <script>
@@ -55,6 +64,7 @@ import Dialog from 'primevue/dialog';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import Toast from 'primevue/toast';
+import PeopleDetail from './PeopleDetail'
 
 
 export default {
@@ -67,18 +77,38 @@ export default {
     "p-dialog": Dialog,
     "p-input-text": InputText,
     "p-button": Button,
-    "p-toast": Toast
+    "p-toast": Toast,
+    "people-detail": PeopleDetail
   },
   data() {
     return {
       peopleList: [],
       loadingData: false,
-      filters: {}
+      filters: {},
+      showPeopleDetail: false,
+      peopleDetailData: {}
     };
   },
   methods: {
+    /**
+     * Method called for going back, to the Home component
+     */
     goBack () {
       this.$router.push('/')
+    },
+    /**
+     * Method for showing the detail of the selected people
+     */
+    clickPeopleRow (peopleData) {
+      this.peopleDetailData = peopleData
+      this.showPeopleDetail = true
+    },
+    /**
+     * Method called when the detail of the People is closed.
+     * This method hides the People Detail Dialog
+     */
+    closedPeopleDetail () {
+      this.showPeopleDetail = false
     }
   },
   mounted() {
