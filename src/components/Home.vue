@@ -5,7 +5,7 @@
     div.p-col-12.p-mb-2
       p-button.p-d-block.p-mx-auto(:label="'Planets'" @click="showPlanetsList()")
     div.p-col-12.p-mb-2
-      p-button.p-d-block.p-mx-auto(:label="'Starships'")
+      p-button.p-d-block.p-mx-auto(:label="'Starships'" @click="showStarshipsList()")
 </template>
 
 <script>
@@ -27,6 +27,9 @@ export default {
     },
     showPlanetsList () {
       this.$router.push('/planets')
+    },
+    showStarshipsList () {
+      this.$router.push('/starships')
     }
   }
 }
