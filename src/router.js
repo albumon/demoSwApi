@@ -3,6 +3,7 @@ import Vue from 'vue'
 
 import Home from './components/Home'
 import PeopleList from './components/people/PeopleList'
+import PlanetsList from './components/planets/PlanetsList'
 
 Vue.use(Router)
 
@@ -17,6 +18,11 @@ const route = new Router({
             path: '/people',
             name: 'People',
             component: PeopleList
+        },
+        {
+            path: '/planets',
+            name: 'Planets',
+            component: PlanetsList
         }
     ]
 })
